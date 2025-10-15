@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Table(name = "officetime")
+@Table(name = "office_time")
 public class Officetime {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

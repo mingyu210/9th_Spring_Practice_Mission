@@ -10,7 +10,7 @@ import umc.domain.store.entity.Store;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Table(name = "reviewreply")
+@Table(name = "review_reply")
 public class Reviewreply {
 
     @Id

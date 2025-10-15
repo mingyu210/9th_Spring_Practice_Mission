@@ -11,7 +11,7 @@ import umc.domain.mission.entity.Mission;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Table(name = "memberFood")
+@Table(name = "member_food")
 public class MemberFood {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

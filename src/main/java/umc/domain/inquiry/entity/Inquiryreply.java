@@ -11,7 +11,7 @@ import umc.global.entity.BaseEntity;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Table(name = "inquiryreply")
+@Table(name = "inquiry_reply")
 public class Inquiryreply extends BaseEntity {
 
     @Id

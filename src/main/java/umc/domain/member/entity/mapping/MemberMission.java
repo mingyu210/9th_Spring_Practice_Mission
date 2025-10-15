@@ -11,7 +11,7 @@ import umc.domain.mission.entity.Mission;
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @Getter
-@Table(name = "memberMission")
+@Table(name = "member_mission")
 public class MemberMission {
 
     @Id

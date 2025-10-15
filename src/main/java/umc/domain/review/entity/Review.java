@@ -37,9 +37,11 @@ public class Review extends BaseEntity {
     @JoinColumn(name = "store_id")
     private Store store;
 
+    @Builder.Default
     @OneToMany(mappedBy = "review", cascade = CascadeType.REMOVE)
     private List<Reviewreply> reviewreplyList =  new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "review",cascade = CascadeType.REMOVE)
     private List<Photo> photos = new ArrayList<>();
 

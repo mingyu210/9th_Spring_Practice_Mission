@@ -32,9 +32,11 @@ public class Inquiry extends BaseEntity {
     @JoinColumn(name = "user_id")
     private Member member;
 
+    @Builder.Default
     @OneToMany(mappedBy = "inquiry", cascade = CascadeType.REMOVE)
     private List<Inquiryreply> inquiryreplies = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "inquiry",  cascade = CascadeType.REMOVE)
     private List<Photo> photos = new ArrayList<>();
 }

@@ -32,6 +32,7 @@ public class Mission{
     @Column(name = "period", nullable = false)
     private Integer period;
 
+    @Builder.Default
     @OneToMany(mappedBy = "mission")
     private List<MemberMission> memberMissions = new ArrayList<>();
 

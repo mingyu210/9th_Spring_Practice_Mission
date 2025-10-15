@@ -66,9 +66,11 @@ public class Member extends BaseEntity {
     @Column(name = "secession_date")
     private LocalDateTime secession_date;
 
+    @Builder.Default
     @OneToMany(mappedBy = "member")
     private List<Alarm> alarms = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "member")
     private List<Inquiry> inquiries = new ArrayList<>();
 
@@ -76,12 +78,15 @@ public class Member extends BaseEntity {
     @JoinColumn(name = "region_id")
     private Region region;
 
+    @Builder.Default
     @OneToMany(mappedBy = "member")
     private List<Review> reviews = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "member")
     private List<MemberMission> memberMissions = new ArrayList<>();
 
+    @Builder.Default
     @OneToMany(mappedBy = "member")
     private List<MemberFood> memberFoods = new ArrayList<>();
 
