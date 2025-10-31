@@ -23,6 +23,7 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
           )
     """)
     List<MemberMission> findActiveOrCompletedMissionsOrderByDeadline(
+            @Param("regionId") Long regionId,
             @Param("memberId") Long memberId
     );
     /*Page<Mission> findAvailableMissionsByRegion(
