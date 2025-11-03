@@ -12,8 +12,8 @@ public interface MemberMissionRepository extends JpaRepository<MemberMission, Lo
     @Query("""
         select mm
         from MemberMission mm
-        join mm.mission m
-        join m.store s
+        join fetch mm.mission m
+        join fetch m.store s
         where mm.member.id = :memberId
           and mm.state in ('RUNNING', 'SUCCESS')
         order by mm.deadline asc
