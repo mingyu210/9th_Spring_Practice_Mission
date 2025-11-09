@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import umc.domain.review.entity.QReview;
 import umc.domain.review.entity.Review;
+import umc.domain.store.entity.QStore;
 
 import java.util.List;
 
@@ -22,7 +23,13 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
         JPAQueryFactory queryFactory = new JPAQueryFactory(em);
 
         QReview review = QReview.review;
+        QStore store = QStore.store;
 
-        return queryFactory.selectFrom(review).where(predicate).fetch();
+        return queryFactory
+                .selectFrom(review)
+                .join(review.store, store).fetchJoin()  // <-- 여기가 핵심
+                .where(predicate)
+                .orderBy(review.createdAt.desc())
+                .fetch();
     }
 }
