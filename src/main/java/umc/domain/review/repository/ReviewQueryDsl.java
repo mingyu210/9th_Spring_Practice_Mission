@@ -1,13 +1,14 @@
 package umc.domain.review.repository;
 
 import com.querydsl.core.types.Predicate;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import umc.domain.review.entity.Review;
 
-import java.util.List;
 
 public interface ReviewQueryDsl {
 
-    List<Review> searchReview(
-            Predicate predicate
+    Page<Review> searchReview(
+            Predicate predicate, Pageable pageable
     );
 }
