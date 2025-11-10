@@ -18,19 +18,18 @@ import java.util.Optional;
 @Repository
 @RequiredArgsConstructor
 public class ReviewQueryDslImpl implements ReviewQueryDsl {
-    private final EntityManager em;
+    private final JPAQueryFactory jpaQueryFactory;
 
     @Override
     public Page<Review> searchReview(
             Predicate predicate, Pageable pageable
     ){
-        JPAQueryFactory queryFactory = new JPAQueryFactory(em);
 
         QReview review = QReview.review;
         QStore store = QStore.store;
 
         //content 쿼리
-        List<Review> results = queryFactory
+        List<Review> results = jpaQueryFactory
                 .selectFrom(review)
                 .join(review.store, store).fetchJoin()
                 .where(predicate)
@@ -40,7 +39,7 @@ public class ReviewQueryDslImpl implements ReviewQueryDsl {
                 .fetch();
         //count 쿼리(페이징 계산용), fetch join 때문에 커스텀 페이지네이션으로 실행
         Long total = Optional.ofNullable(
-                queryFactory
+                jpaQueryFactory
                         .select(review.count())
                         .from(review)
                         .where(predicate)
