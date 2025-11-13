@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import umc.domain.review.code.ReviewErrorCode;
+import umc.domain.review.converter.ReviewConverter;
 import umc.domain.review.dto.ReviewResponseDTO;
 import umc.domain.review.entity.Review;
 import umc.domain.review.exception.ReviewException;
@@ -25,12 +26,6 @@ public class ReviewQueryService {
             throw new ReviewException(ReviewErrorCode.REVIEW_NOT_FOUND);
         }
 
-        return reviews.map(r -> ReviewResponseDTO.builder()
-                .id(r.getId())
-                .content(r.getContent())
-                .grade(r.getGrade())
-                .storeName(r.getStore().getName())
-                .createdAt(r.getCreatedAt())
-                .build());
+        return reviews.map(ReviewConverter::toResponseDTO);
     }
 }
