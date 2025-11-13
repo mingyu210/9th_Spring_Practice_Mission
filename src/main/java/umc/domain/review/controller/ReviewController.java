@@ -19,7 +19,7 @@ public class ReviewController {
 
     private final ReviewQueryService reviewQueryService;
 
-    @GetMapping("/reviews/search")
+    @GetMapping("/search")
     public ResponseEntity<Page<ReviewResponseDTO>> searchReview(
             @RequestParam Long memberId,              // ✅ 추가됨
             @RequestParam(required = false) String type,
