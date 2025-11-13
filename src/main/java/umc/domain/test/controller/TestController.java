@@ -19,7 +19,7 @@ public class TestController {
     @GetMapping("/test")
     public ApiResponse<TestResDTO .Testing> test() throws Exception{
         GeneralSuccessCode code = GeneralSuccessCode.OK;
-        throw new TestException(GeneralErrorCode.NOT_FOUND);
+        throw new TestException(GeneralErrorCode.INTERNAL_SERVER_ERROR);
 /*        return ApiResponse.onSuccess(
                 code,
                 TestConverter.toTestingDTO("This is Test!")
