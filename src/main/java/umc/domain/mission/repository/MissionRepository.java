@@ -27,5 +27,4 @@ public interface MissionRepository extends JpaRepository<Mission, Long> {
             @Param("memberId") Long memberId,
             Pageable pageable
     );
-    //아직 Service를 안만들어서 Pageable를 쓸 수가 없다.
 }
