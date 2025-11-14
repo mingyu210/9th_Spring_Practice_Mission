@@ -1,0 +1,29 @@
+package umc.domain.member.controller;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Pageable;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+import umc.domain.member.dto.MemberResponseDTO;
+import umc.domain.member.service.MemberQueryService;
+import umc.global.apiPayload.dto.PageResponseDTO;
+
+@RestController
+@RequestMapping("/members")
+@RequiredArgsConstructor
+public class MemberController {
+
+    private final MemberQueryService memberQueryService;
+
+    @GetMapping
+    public ResponseEntity<PageResponseDTO<MemberResponseDTO>> getMembers(
+            Pageable pageable
+    ) {
+        PageResponseDTO<MemberResponseDTO> result =
+                memberQueryService.getMembers(pageable);
+
+        return ResponseEntity.ok(result);
+    }
+}
