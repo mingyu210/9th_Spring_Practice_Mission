@@ -10,6 +10,9 @@ import umc.domain.review.dto.ReviewResponseDTO;
 import umc.domain.review.entity.Review;
 import umc.domain.review.exception.ReviewException;
 import umc.domain.review.repository.ReviewRepository;
+import umc.global.apiPayload.dto.PageResponseDTO;
+
+import java.util.List;
 
 
 @Service
@@ -18,7 +21,7 @@ public class ReviewQueryService {
 
     private final ReviewRepository reviewRepository;
 
-    public Page<ReviewResponseDTO> searchReview(Long memberId, String type, String query, Pageable pageable) {
+    public PageResponseDTO<ReviewResponseDTO> searchReview(Long memberId, String type, String query, Pageable pageable) {
         Page<Review> reviews = reviewRepository.searchReview(memberId, type, query, pageable);
 
         // ✅ 검색 결과가 없으면 예외 던짐
@@ -26,6 +29,17 @@ public class ReviewQueryService {
             throw new ReviewException(ReviewErrorCode.REVIEW_NOT_FOUND);
         }
 
-        return reviews.map(ReviewConverter::toResponseDTO);
+        List<ReviewResponseDTO> list = reviews
+                .map(ReviewConverter::toResponseDTO)
+                .getContent();
+
+        return new PageResponseDTO<>(
+                list,
+                reviews.getNumber(),
+                reviews.getSize(),
+                reviews.getTotalElements(),
+                reviews.getTotalPages(),
+                reviews.hasNext()
+        );
     }
 }

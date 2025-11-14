@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import umc.domain.review.dto.ReviewResponseDTO;
 import umc.domain.review.service.ReviewQueryService;
+import umc.global.apiPayload.dto.PageResponseDTO;
 
 
 @RestController
@@ -20,13 +21,15 @@ public class ReviewController {
     private final ReviewQueryService reviewQueryService;
 
     @GetMapping("/search")
-    public ResponseEntity<Page<ReviewResponseDTO>> searchReview(
+    public ResponseEntity<PageResponseDTO<ReviewResponseDTO>> searchReview(
             @RequestParam Long memberId,              // ✅ 추가됨
             @RequestParam(required = false) String type,
             @RequestParam(required = false) String query,
             Pageable pageable
     ){
-        Page<ReviewResponseDTO> result = reviewQueryService.searchReview(memberId, type, query, pageable);
-        return ResponseEntity.ok(result);
+        PageResponseDTO<ReviewResponseDTO> response =
+                reviewQueryService.searchReview(memberId, type, query, pageable);
+
+        return ResponseEntity.ok(response);
     }
 }
