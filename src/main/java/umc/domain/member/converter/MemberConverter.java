@@ -22,7 +22,7 @@ public class MemberConverter {
                 .createAt(member.getCreatedAt())
                 .build();
     }
-
+    // DTO -> Entity
     public static Member toMember(MemberReqDTO.SignupRequestDTO dto) {
         return Member.builder()
                 .name(dto.name())

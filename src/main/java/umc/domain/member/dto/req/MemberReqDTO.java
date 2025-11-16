@@ -1,8 +1,10 @@
 package umc.domain.member.dto.req;
 
+import umc.domain.member.entity.mapping.MemberFood;
 import umc.domain.member.enums.Gender;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class MemberReqDTO {
 
@@ -13,7 +15,8 @@ public class MemberReqDTO {
             LocalDate birthday,
             String address,
             String phone,
-            String email
+            String email,
+            List<Long> preferCategory
     ){
 
     }
