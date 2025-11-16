@@ -9,8 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import umc.domain.review.code.ReviewSuccessCode;
 import umc.domain.review.dto.ReviewResponseDTO;
 import umc.domain.review.service.ReviewQueryService;
+import umc.global.apiPayload.ApiResponse;
 import umc.global.apiPayload.dto.PageResponseDTO;
 
 
@@ -22,7 +24,7 @@ public class ReviewController {
     private final ReviewQueryService reviewQueryService;
 
     @GetMapping("/search")
-    public ResponseEntity<PageResponseDTO<ReviewResponseDTO>> searchReview(
+    public ResponseEntity<ApiResponse<PageResponseDTO<ReviewResponseDTO>>> searchReview(
             @RequestParam Long memberId,              // ✅ 추가됨
             @RequestParam(required = false) String type,
             @RequestParam(required = false) String query,
@@ -37,6 +39,8 @@ public class ReviewController {
         PageResponseDTO<ReviewResponseDTO> response =
                 reviewQueryService.searchReview(memberId, type, query, pageable);
 
-        return ResponseEntity.ok(response);
+        return ResponseEntity.ok(
+                ApiResponse.onSuccess(ReviewSuccessCode.REVIEW_SEARCH_SUCCESS, response)
+        );
     }
 }
