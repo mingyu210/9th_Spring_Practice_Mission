@@ -1,5 +1,6 @@
 package umc.domain.member.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -42,7 +43,7 @@ public class MemberController {
 
     @PostMapping("/sign-up")
     public ResponseEntity<ApiResponse<MemberResponseDTO.SignupResponseDTO>> signUp(
-            @RequestBody MemberReqDTO.SignupRequestDTO dto
+            @RequestBody @Valid MemberReqDTO.SignupRequestDTO dto
             ){
         return ResponseEntity.ok(
                 ApiResponse.onSuccess(MemberSuccessCode.MEMBER_SIGNUP_SUCCESS, memberCommandService.signup(dto))
