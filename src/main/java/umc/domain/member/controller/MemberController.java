@@ -6,7 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import umc.domain.member.dto.MemberResponseDTO;
+import umc.domain.member.dto.res.MemberResponseDTO;
 import umc.domain.member.service.MemberQueryService;
 import umc.global.apiPayload.dto.PageResponseDTO;
 
@@ -18,10 +18,10 @@ public class MemberController {
     private final MemberQueryService memberQueryService;
 
     @GetMapping
-    public ResponseEntity<PageResponseDTO<MemberResponseDTO>> getMembers(
+    public ResponseEntity<PageResponseDTO<MemberResponseDTO.SearchDTO>> getMembers(
             Pageable pageable
     ) {
-        PageResponseDTO<MemberResponseDTO> result =
+        PageResponseDTO<MemberResponseDTO.SearchDTO> result =
                 memberQueryService.getMembers(pageable);
 
         return ResponseEntity.ok(result);
