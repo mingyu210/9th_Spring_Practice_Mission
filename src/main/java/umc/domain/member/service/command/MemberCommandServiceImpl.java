@@ -39,8 +39,7 @@ public class MemberCommandServiceImpl implements MemberCommandService {
             List<MemberFood> memberFood = dto.preferCategory().stream()
                     .map(id -> MemberFood.builder()
                             .member(member)
-                            .food(foodRepository.findById(id)
-                                    .orElseThrow(() -> new FoodException(FoodErrorCode.NOT_FOUND)))
+                            .food(foodRepository.getReferenceById(id))
                             .build()
                     )
                     .collect(Collectors.toList());
