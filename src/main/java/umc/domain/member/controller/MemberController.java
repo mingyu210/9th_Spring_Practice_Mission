@@ -5,13 +5,11 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import umc.domain.member.code.MemberSuccessCode;
+import umc.domain.member.dto.req.MemberReqDTO;
 import umc.domain.member.dto.res.MemberResponseDTO;
 import umc.domain.member.service.MemberQueryService;
-import umc.domain.mission.code.MissionSuccessCode;
 import umc.global.apiPayload.ApiResponse;
 import umc.global.apiPayload.dto.PageResponseDTO;
 
@@ -38,5 +36,12 @@ public class MemberController {
         return ResponseEntity.ok(
                 ApiResponse.onSuccess(MemberSuccessCode.MEMBER_LIST_SUCCESS, result)
         );
+    }
+
+    @PostMapping("/sign-up")
+    public ResponseEntity<ApiResponse<MemberResponseDTO.SearchDTO>> signUp(
+            @RequestBody MemberReqDTO.SignupRequestDTO dto
+            ){
+        return null;
     }
 }
