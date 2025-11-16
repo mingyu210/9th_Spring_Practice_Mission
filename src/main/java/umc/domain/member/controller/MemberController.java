@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import umc.domain.member.code.MemberSuccessCode;
 import umc.domain.member.dto.req.MemberReqDTO;
 import umc.domain.member.dto.res.MemberResponseDTO;
-import umc.domain.member.service.MemberQueryService;
+import umc.domain.member.service.command.MemberCommandService;
+import umc.domain.member.service.query.MemberQueryService;
 import umc.global.apiPayload.ApiResponse;
 import umc.global.apiPayload.dto.PageResponseDTO;
 
@@ -19,6 +20,7 @@ import umc.global.apiPayload.dto.PageResponseDTO;
 public class MemberController {
 
     private final MemberQueryService memberQueryService;
+    private final MemberCommandService memberCommandService;
 
     @GetMapping
     public ResponseEntity<ApiResponse<PageResponseDTO<MemberResponseDTO.SearchDTO>>> getMembers(
@@ -39,9 +41,11 @@ public class MemberController {
     }
 
     @PostMapping("/sign-up")
-    public ResponseEntity<ApiResponse<MemberResponseDTO.SearchDTO>> signUp(
+    public ResponseEntity<ApiResponse<MemberResponseDTO.SignupResponseDTO>> signUp(
             @RequestBody MemberReqDTO.SignupRequestDTO dto
             ){
-        return null;
+        return ResponseEntity.ok(
+                ApiResponse.onSuccess(MemberSuccessCode.MEMBER_SIGNUP_SUCCESS, memberCommandService.signup(dto))
+        );
     }
 }
