@@ -1,4 +1,4 @@
-package umc.domain.store.exception.exception;
+package umc.domain.store.code;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

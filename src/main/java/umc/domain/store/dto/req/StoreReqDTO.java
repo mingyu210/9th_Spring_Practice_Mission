@@ -5,6 +5,7 @@ public class StoreReqDTO {
     public record CreateRequestDTO(
             String name,
             String info,
-            Long regionId
+            Long regionId,
+            Long foodId
     ){}
 }

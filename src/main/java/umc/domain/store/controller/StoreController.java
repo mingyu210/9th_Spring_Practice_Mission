@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import umc.domain.store.dto.req.StoreReqDTO;
 import umc.domain.store.dto.res.StoreResDTO;
-import umc.domain.store.exception.exception.StoreSuccessCode;
+import umc.domain.store.code.StoreSuccessCode;
 import umc.domain.store.service.command.StoreCommandService;
 import umc.global.apiPayload.ApiResponse;
 
