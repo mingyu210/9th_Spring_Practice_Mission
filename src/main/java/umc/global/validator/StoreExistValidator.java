@@ -3,34 +3,34 @@ package umc.global.validator;
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
 import lombok.RequiredArgsConstructor;
-import org.hibernate.annotations.Comment;
 import org.springframework.stereotype.Component;
 import umc.domain.store.code.StoreErrorCode;
 import umc.domain.store.repository.StoreRepository;
-import umc.global.annotation.ExistStores;
+import umc.global.annotation.ExistStore;
 
 import java.util.List;
 
 @Component
 @RequiredArgsConstructor
-public class StoreExistValidator implements ConstraintValidator<ExistStores, List<Long>> {
+public class StoreExistValidator implements ConstraintValidator<ExistStore, Long> {
+
     private final StoreRepository storeRepository;
 
     @Override
-    public boolean isValid(List<Long> storeIds, ConstraintValidatorContext context) {
-        if (storeIds == null || storeIds.isEmpty()) {
-            return true; // null이나 empty는 검증 통과
+    public boolean isValid(Long storeId, ConstraintValidatorContext context) {
+        if (storeId == null) {
+            return true; // null 허용
         }
 
-        boolean isValid = storeIds.stream()
-                .allMatch(storeId -> storeRepository.existsById(storeId));
+        boolean exists = storeRepository.existsById(storeId);
 
-        if (!isValid) {
+        if (!exists) {
             context.disableDefaultConstraintViolation();
             context.buildConstraintViolationWithTemplate(StoreErrorCode.STORE_NOT_FOUND.getMessage())
                     .addConstraintViolation();
         }
 
-        return isValid;
+        return exists;
     }
 }
+
