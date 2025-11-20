@@ -1,4 +1,4 @@
-package umc.domain.mission.service;
+package umc.domain.mission.service.query;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
