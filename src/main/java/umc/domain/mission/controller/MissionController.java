@@ -1,5 +1,6 @@
 package umc.domain.mission.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -11,7 +12,6 @@ import umc.domain.mission.dto.req.MissionReqDTO;
 import umc.domain.mission.dto.res.MissionResDTO;
 import umc.domain.mission.service.command.MissionCommandService;
 import umc.domain.mission.service.query.MissionQueryService;
-import umc.domain.review.code.ReviewSuccessCode;
 import umc.global.apiPayload.ApiResponse;
 import umc.global.apiPayload.dto.PageResponseDTO;
 
@@ -44,7 +44,7 @@ public class MissionController {
 
     @PostMapping("/create")
     public ResponseEntity<ApiResponse<MissionResDTO.CreateResDTO>> createMission(
-            @RequestBody MissionReqDTO.CreateReqDTO dto
+            @RequestBody @Valid MissionReqDTO.CreateReqDTO dto
             ){
         return ResponseEntity.ok(
                 ApiResponse.onSuccess(MissionSuccessCode.MISSION_CREATE_SUCCESS,missionCommandService.createMission(dto))

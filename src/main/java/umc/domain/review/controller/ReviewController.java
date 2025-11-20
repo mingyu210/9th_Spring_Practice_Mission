@@ -1,5 +1,6 @@
 package umc.domain.review.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -47,7 +48,7 @@ public class ReviewController {
 
     @PostMapping("/create")
     public ResponseEntity<ApiResponse<ReviewResDTO.CreateResDTO>> createReview(
-            @RequestBody ReviewReqDTO.CreateReviewDTO dto
+            @RequestBody @Valid ReviewReqDTO.CreateReviewDTO dto
     ) {
         return ResponseEntity.ok(
                 ApiResponse.onSuccess(ReviewSuccessCode.REVIEW_CREATE_SUCCESS,reviewCommandService.createReview(dto))

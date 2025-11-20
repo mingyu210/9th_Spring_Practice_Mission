@@ -11,7 +11,6 @@ import umc.domain.review.dto.res.ReviewResDTO;
 import umc.domain.review.entity.Review;
 import umc.domain.review.exception.ReviewException;
 import umc.domain.review.repository.ReviewRepository;
-import umc.domain.store.entity.Store;
 import umc.domain.store.repository.StoreRepository;
 
 @Service
@@ -28,14 +27,12 @@ public class ReviewCommandServiceImpl implements ReviewCommandService {
     ){
         Member member = memberRepository.findById(dto.memberId())
                 .orElseThrow(() -> new ReviewException(ReviewErrorCode.MEMBER_NOT_FOUND));
-        Store store = storeRepository.findById(dto.storeId())
-                .orElseThrow(() -> new ReviewException(ReviewErrorCode.STORE_NOT_FOUND));
 
         Review review = Review.builder()
                 .grade(dto.grade())
                 .content(dto.content())
                 .member(member)
-                .store(store)
+                .store(storeRepository.getReferenceById(dto.storeId()))
                 .build();
 
         reviewRepository.save(review);
