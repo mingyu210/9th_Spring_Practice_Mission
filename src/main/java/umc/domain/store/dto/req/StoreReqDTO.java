@@ -1,6 +1,5 @@
 package umc.domain.store.dto.req;
 
-import umc.domain.region.entity.Region;
 
 public class StoreReqDTO {
     public record CreateRequestDTO(
