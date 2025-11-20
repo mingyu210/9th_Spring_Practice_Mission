@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import umc.domain.mission.code.MissionSuccessCode;
-import umc.domain.mission.dto.res.MissionResponseDTO;
+import umc.domain.mission.dto.res.MissionResDTO;
 import umc.domain.mission.service.MissionQueryService;
 import umc.global.apiPayload.ApiResponse;
 import umc.global.apiPayload.dto.PageResponseDTO;
@@ -22,7 +22,7 @@ public class MissionController {
     private final MissionQueryService missionQueryService;
 
     @GetMapping("/available")
-    public ResponseEntity<ApiResponse<PageResponseDTO<MissionResponseDTO>>> getAvailableMissions(
+    public ResponseEntity<ApiResponse<PageResponseDTO<MissionResDTO.MissionResponseDTO>>> getAvailableMissions(
             @RequestParam Long regionId,
             @RequestParam Long memberId,
             @PageableDefault(
@@ -33,7 +33,7 @@ public class MissionController {
             )
             Pageable pageable
     ) {
-        PageResponseDTO<MissionResponseDTO> result =
+        PageResponseDTO<MissionResDTO.MissionResponseDTO> result =
                 missionQueryService.getAvailableMissions(regionId, memberId, pageable);
 
         return ResponseEntity.ok(

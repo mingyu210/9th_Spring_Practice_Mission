@@ -1,11 +1,11 @@
 package umc.domain.mission.converter;
 
-import umc.domain.mission.dto.res.MissionResponseDTO;
+import umc.domain.mission.dto.res.MissionResDTO;
 import umc.domain.mission.entity.Mission;
 
 public class MissionConverter {
-    public static MissionResponseDTO toMissionResponseDTO(Mission mission) {
-        return MissionResponseDTO.builder()
+    public static MissionResDTO.MissionResponseDTO toMissionResponseDTO(Mission mission) {
+        return MissionResDTO.MissionResponseDTO.builder()
                 .id(mission.getId())
                 .content(mission.getContent())
                 .point(mission.getPoint())
