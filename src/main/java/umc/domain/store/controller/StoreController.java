@@ -1,6 +1,7 @@
 package umc.domain.store.controller;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -18,9 +19,11 @@ public class StoreController {
     private final StoreCommandService storeCommandService;
 
     @PostMapping("/create")
-    public ApiResponse<StoreResDTO.CreateResDTO> create(
+    public ResponseEntity<ApiResponse<StoreResDTO.CreateResDTO>> create(
             @RequestBody StoreReqDTO.CreateRequestDTO dto
     ){
-        return ApiResponse.onSuccess(StoreSuccessCode.STORE_CREATE_SUCCESS, storeCommandService.create(dto));
+        return ResponseEntity.ok(
+                ApiResponse.onSuccess(StoreSuccessCode.STORE_CREATE_SUCCESS, storeCommandService.create(dto))
+        );
     }
 }
