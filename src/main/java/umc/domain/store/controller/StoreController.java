@@ -1,5 +1,6 @@
 package umc.domain.store.controller;
 
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -20,7 +21,7 @@ public class StoreController {
 
     @PostMapping("/create")
     public ResponseEntity<ApiResponse<StoreResDTO.CreateResDTO>> create(
-            @RequestBody StoreReqDTO.CreateRequestDTO dto
+            @RequestBody @Valid StoreReqDTO.CreateRequestDTO dto
     ){
         return ResponseEntity.ok(
                 ApiResponse.onSuccess(StoreSuccessCode.STORE_CREATE_SUCCESS, storeCommandService.create(dto))

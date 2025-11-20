@@ -6,11 +6,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import umc.domain.food.code.FoodErrorCode;
 import umc.domain.food.repository.FoodRepository;
-import umc.global.annotation.ExistFoods;
+import umc.global.annotation.ExistFood;
 
 @Component
 @RequiredArgsConstructor
-public class FoodExistSingleValidator implements ConstraintValidator<ExistFoods, Long> {
+public class FoodExistSingleValidator implements ConstraintValidator<ExistFood, Long> {
 
     private final FoodRepository foodRepository;
 
