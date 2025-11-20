@@ -1,6 +1,6 @@
 package umc.domain.mission.converter;
 
-import umc.domain.mission.dto.MissionResponseDTO;
+import umc.domain.mission.dto.res.MissionResponseDTO;
 import umc.domain.mission.entity.Mission;
 
 public class MissionConverter {

@@ -10,9 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import umc.domain.mission.code.MissionSuccessCode;
-import umc.domain.mission.dto.MissionResponseDTO;
+import umc.domain.mission.dto.res.MissionResponseDTO;
 import umc.domain.mission.service.MissionQueryService;
-import umc.domain.review.code.ReviewSuccessCode;
 import umc.global.apiPayload.ApiResponse;
 import umc.global.apiPayload.dto.PageResponseDTO;
 

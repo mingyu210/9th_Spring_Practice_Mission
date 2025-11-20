@@ -1,4 +1,4 @@
-package umc.domain.mission.dto;
+package umc.domain.mission.dto.res;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
