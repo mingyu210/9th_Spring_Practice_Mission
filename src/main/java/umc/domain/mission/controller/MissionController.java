@@ -16,13 +16,12 @@ import umc.global.apiPayload.ApiResponse;
 import umc.global.apiPayload.dto.PageResponseDTO;
 
 @RestController
-@RequestMapping("/missions")
 @RequiredArgsConstructor
 public class MissionController {
     private final MissionQueryService missionQueryService;
     private final MissionCommandService missionCommandService;
 
-    @GetMapping("/available")
+    @GetMapping("/missions/available")
     public ResponseEntity<ApiResponse<PageResponseDTO<MissionResDTO.MissionResponseDTO>>> getAvailableMissions(
             @RequestParam Long regionId,
             @RequestParam Long memberId,
@@ -42,8 +41,9 @@ public class MissionController {
         );
     }
 
-    @PostMapping("/create")
+    @PostMapping("/stores/{storeId}/missions")
     public ResponseEntity<ApiResponse<MissionResDTO.CreateResDTO>> createMission(
+            @PathVariable Long storeId,
             @RequestBody @Valid MissionReqDTO.CreateReqDTO dto
             ){
         return ResponseEntity.ok(

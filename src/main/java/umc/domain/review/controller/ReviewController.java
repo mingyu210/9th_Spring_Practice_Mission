@@ -18,14 +18,13 @@ import umc.global.apiPayload.dto.PageResponseDTO;
 
 
 @RestController
-@RequestMapping("/reviews")
 @RequiredArgsConstructor
 public class ReviewController {
 
     private final ReviewQueryService reviewQueryService;
     private final ReviewCommandService reviewCommandService;
 
-    @GetMapping("/search")
+    @GetMapping("/reviews/search")
     public ResponseEntity<ApiResponse<PageResponseDTO<ReviewResponseDTO>>> searchReview(
             @RequestParam Long memberId,              // ✅ 추가됨
             @RequestParam(required = false) String type,
@@ -46,8 +45,9 @@ public class ReviewController {
         );
     }
 
-    @PostMapping("/create")
+    @PostMapping("/stores/{storeId}/reviews")
     public ResponseEntity<ApiResponse<ReviewResDTO.CreateResDTO>> createReview(
+            @PathVariable Long storeId,
             @RequestBody @Valid ReviewReqDTO.CreateReviewDTO dto
     ) {
         return ResponseEntity.ok(
