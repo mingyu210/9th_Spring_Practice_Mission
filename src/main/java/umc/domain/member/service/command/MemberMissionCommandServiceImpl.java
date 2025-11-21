@@ -43,10 +43,8 @@ public class MemberMissionCommandServiceImpl implements MemberMissionCommandServ
         }
 
         // Entity 생성
-        MemberMission memberMission = MemberMission.builder()
-                .member(member)
-                .mission(mission)
-                .build();
+        MemberMission memberMission = MemberMissionConverter.toMemberMission(dto, member, mission);
+
 
         memberMissionRepository.save(memberMission);
 

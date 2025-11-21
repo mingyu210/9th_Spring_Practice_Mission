@@ -30,12 +30,7 @@ public class StoreCommandServiceImpl implements StoreCommandService {
         Food food = foodRepository.findById(dto.foodId())
                 .orElseThrow(() -> new StoreException(StoreErrorCode.FOOD_CATEGORY_NOT_FOUND));
 
-        Store store = Store.builder()
-                .name(dto.name())
-                .info(dto.info())
-                .region(region)
-                .food(food)
-                .build();
+        Store store = StoreConverter.toStore(dto, region, food);
 
         storeRepository.save(store);
 
