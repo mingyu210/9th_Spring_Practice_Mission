@@ -19,7 +19,7 @@ import umc.global.apiPayload.dto.PageResponseDTO;
 
 @RestController
 @RequiredArgsConstructor
-public class ReviewController {
+public class ReviewController implements ReviewControllerDocs{
 
     private final ReviewQueryService reviewQueryService;
     private final ReviewCommandService reviewCommandService;
@@ -52,6 +52,20 @@ public class ReviewController {
     ) {
         return ResponseEntity.ok(
                 ApiResponse.onSuccess(ReviewSuccessCode.REVIEW_CREATE_SUCCESS,reviewCommandService.createReview(dto))
+        );
+    }
+
+    @Override
+    @GetMapping("/review")
+    public ResponseEntity<ApiResponse<PageResponseDTO<ReviewResDTO.ReviewPreViewDTO>>> getReviews(
+            @RequestParam String storeName,
+            @RequestParam(defaultValue = "1") Integer page
+    ){
+
+        PageResponseDTO<ReviewResDTO.ReviewPreViewDTO> response =
+                reviewQueryService.findReview(storeName, page);
+        return ResponseEntity.ok(
+                ApiResponse.onSuccess(ReviewSuccessCode.REVIEW_SEARCH_SUCCESS, response)
         );
     }
 }

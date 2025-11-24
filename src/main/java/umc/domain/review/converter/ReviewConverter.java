@@ -5,6 +5,8 @@ import umc.domain.review.dto.res.ReviewResDTO;
 import umc.domain.review.dto.res.ReviewResponseDTO;
 import umc.domain.review.entity.Review;
 
+import java.time.LocalDate;
+
 public class ReviewConverter {
 
     public static ReviewResponseDTO toResponseDTO(Review review){
@@ -32,6 +34,15 @@ public class ReviewConverter {
         return Review.builder()
                 .grade(dto.grade())
                 .content(dto.content())
+                .build();
+    }
+
+    public static ReviewResDTO.ReviewPreViewDTO toReviewPreviewDTO(Review review){
+        return ReviewResDTO.ReviewPreViewDTO.builder()
+                .ownerNickname(review.getMember().getName())
+                .grade(review.getGrade())
+                .content(review.getContent())
+                .createdAt(LocalDate.from(review.getCreatedAt()))
                 .build();
     }
 }

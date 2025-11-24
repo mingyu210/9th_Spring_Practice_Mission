@@ -2,6 +2,7 @@ package umc.domain.review.dto.res;
 
 import lombok.Builder;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 public class ReviewResDTO {
@@ -9,5 +10,13 @@ public class ReviewResDTO {
     public record CreateResDTO(
             Long reviewId,
             LocalDateTime createAt
+    ){}
+
+    @Builder
+    public record ReviewPreViewDTO(
+            String ownerNickname,
+            Integer grade,
+            String content,
+            LocalDate createdAt
     ){}
 }
