@@ -6,6 +6,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import umc.domain.review.code.ReviewSuccessCode;
 import umc.domain.review.dto.req.ReviewReqDTO;
@@ -13,6 +14,7 @@ import umc.domain.review.dto.res.ReviewResDTO;
 import umc.domain.review.dto.res.ReviewResponseDTO;
 import umc.domain.review.service.command.ReviewCommandService;
 import umc.domain.review.service.query.ReviewQueryService;
+import umc.global.annotation.ValidPage;
 import umc.global.apiPayload.ApiResponse;
 import umc.global.apiPayload.dto.PageResponseDTO;
 
@@ -56,11 +58,13 @@ public class ReviewController implements ReviewControllerDocs{
     }
 
     @Override
+    @Validated
     @GetMapping("/review")
     public ResponseEntity<ApiResponse<PageResponseDTO<ReviewResDTO.ReviewPreViewDTO>>> getReviews(
-            @RequestParam String storeName,
-            @RequestParam(defaultValue = "1") Integer page
+            @Valid ReviewReqDTO.FindReviewDTO dto
     ){
+        String storeName = dto.storeName();
+        Integer page = dto.page();
 
         PageResponseDTO<ReviewResDTO.ReviewPreViewDTO> response =
                 reviewQueryService.findReview(storeName, page);

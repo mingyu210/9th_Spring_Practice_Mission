@@ -4,6 +4,7 @@ import jakarta.validation.constraints.Max;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import umc.global.annotation.ExistStore;
+import umc.global.annotation.ValidPage;
 
 public class ReviewReqDTO {
 
@@ -17,4 +18,14 @@ public class ReviewReqDTO {
             @ExistStore
             Long storeId
     ){}
+
+    public record FindReviewDTO(
+            String storeName,
+            @ValidPage
+            Integer page
+    ){
+        public FindReviewDTO {
+            if (page == null) page = 1;
+        }
+    }
 }
