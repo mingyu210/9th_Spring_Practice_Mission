@@ -30,4 +30,20 @@ public class MemberMissionConverter {
                 .mission(mission)
                 .build();
     }
+
+
+        public static MemberMissionResDTO.goingResDTO toGoingResDTO(MemberMission mm)
+    {
+        Mission mission = mm.getMission();
+
+        return MemberMissionResDTO.goingResDTO.builder()
+                .storeName(mission.getStore().getName())
+                .content(mission.getContent())
+                .point(mission.getPoint())
+                .period(mission.getPeriod())
+                .deadline(mm.getDeadline())
+                .build();
+    }
+
+
 }
