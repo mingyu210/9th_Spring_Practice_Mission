@@ -45,4 +45,13 @@ public class ReviewConverter {
                 .createdAt(LocalDate.from(review.getCreatedAt()))
                 .build();
     }
+
+    public static ReviewResDTO.MemberReviewDTO toMemberReviewDTO(Review review){
+        return ReviewResDTO.MemberReviewDTO.builder()
+                .memberName((review.getMember().getName()))
+                .grade(review.getGrade())
+                .content(review.getContent())
+                .createdAt(LocalDate.from(review.getCreatedAt()))
+                .build();
+    }
 }

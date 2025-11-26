@@ -19,4 +19,12 @@ public class ReviewResDTO {
             String content,
             LocalDate createdAt
     ){}
+
+    @Builder
+    public record MemberReviewDTO(
+            String memberName,
+            Integer grade,
+            String content,
+            LocalDate createdAt
+    ){}
 }

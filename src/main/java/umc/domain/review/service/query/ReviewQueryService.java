@@ -10,4 +10,5 @@ import java.util.List;
 public interface ReviewQueryService {
     PageResponseDTO<ReviewResponseDTO> searchReview(Long memberId, String type, String query, Pageable pageable);
     PageResponseDTO<ReviewResDTO.ReviewPreViewDTO> findReview(String storeName, Integer page);
+    PageResponseDTO<ReviewResDTO.MemberReviewDTO> findMemberReview(Long memberId, Integer page);
 }

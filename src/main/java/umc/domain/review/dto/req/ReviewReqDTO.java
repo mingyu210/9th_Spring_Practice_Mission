@@ -28,4 +28,13 @@ public class ReviewReqDTO {
             if (page == null) page = 1;
         }
     }
+
+    public record FindMemberReviewDTO(
+            @ValidPage
+            Integer page
+    ){
+        public FindMemberReviewDTO {
+            if (page == null) page = 1;
+        }
+    }
 }

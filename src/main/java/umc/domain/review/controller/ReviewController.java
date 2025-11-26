@@ -2,6 +2,7 @@ package umc.domain.review.controller;
 
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
+import org.apache.coyote.Response;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
@@ -68,6 +69,22 @@ public class ReviewController implements ReviewControllerDocs{
 
         PageResponseDTO<ReviewResDTO.ReviewPreViewDTO> response =
                 reviewQueryService.findReview(storeName, page);
+        return ResponseEntity.ok(
+                ApiResponse.onSuccess(ReviewSuccessCode.REVIEW_SEARCH_SUCCESS, response)
+        );
+    }
+
+    @Override
+    @Validated
+    @GetMapping("/members/{memberId}/reviews")
+    public ResponseEntity<ApiResponse<PageResponseDTO<ReviewResDTO.MemberReviewDTO>>> getMemberReviews(
+            @PathVariable Long memberId,
+            @ModelAttribute @Valid ReviewReqDTO.FindMemberReviewDTO dto
+    ){
+        Integer page = dto.page();
+
+        PageResponseDTO<ReviewResDTO.MemberReviewDTO> response =
+                reviewQueryService.findMemberReview(memberId, page);
         return ResponseEntity.ok(
                 ApiResponse.onSuccess(ReviewSuccessCode.REVIEW_SEARCH_SUCCESS, response)
         );
