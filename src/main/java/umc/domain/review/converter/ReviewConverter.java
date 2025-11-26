@@ -49,6 +49,7 @@ public class ReviewConverter {
     public static ReviewResDTO.MemberReviewDTO toMemberReviewDTO(Review review){
         return ReviewResDTO.MemberReviewDTO.builder()
                 .memberName((review.getMember().getName()))
+                .storeName(review.getStore().getName())
                 .grade(review.getGrade())
                 .content(review.getContent())
                 .createdAt(LocalDate.from(review.getCreatedAt()))

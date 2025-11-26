@@ -23,6 +23,7 @@ public class ReviewResDTO {
     @Builder
     public record MemberReviewDTO(
             String memberName,
+            String storeName,
             Integer grade,
             String content,
             LocalDate createdAt
