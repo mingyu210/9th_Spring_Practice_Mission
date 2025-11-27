@@ -3,6 +3,7 @@ package umc.domain.member.controller;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import umc.domain.member.code.MemberMissionSuccessCode;
 import umc.domain.member.dto.req.MemberMissionReqDTO;
@@ -49,6 +50,21 @@ public class MemberMissionController implements MemberMissionControllerDocs {
                         MissionSuccessCode.MISSION_SEARCH_SUCCESS,
                         response
                 )
+        );
+    }
+
+    @Override
+    @Transactional
+    @PostMapping("/mission/{memberMissionId}/complete")
+    public ResponseEntity<ApiResponse<MemberMissionResDTO.completeResDTO>> completeMission(
+            @PathVariable Long memberMissionId
+    ) {
+
+        MemberMissionResDTO.completeResDTO response =
+                memberMissionCommandService.completeMission(memberMissionId);
+
+        return ResponseEntity.ok(
+                ApiResponse.onSuccess(MemberMissionSuccessCode.MISSION_COMPLETE_SUCCESS, response)
         );
     }
 

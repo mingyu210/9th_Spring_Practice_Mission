@@ -22,4 +22,11 @@ public class MemberMissionResDTO {
             Integer period,
             LocalDate deadline
     ){}
+
+    @Builder
+    public record completeResDTO(
+            String storeName,
+            String content,
+            Integer point
+    ){}
 }

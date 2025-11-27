@@ -45,5 +45,13 @@ public class MemberMissionConverter {
                 .build();
     }
 
+    public static MemberMissionResDTO.completeResDTO toCompleteResDTO(MemberMission mm){
+        Mission mission = mm.getMission();
 
+        return MemberMissionResDTO.completeResDTO.builder()
+                .storeName(mission.getStore().getName())
+                .content(mission.getContent())
+                .point(mission.getPoint())
+                .build();
+    }
 }
