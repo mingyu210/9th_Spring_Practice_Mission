@@ -38,7 +38,7 @@ public class MemberMissionController implements MemberMissionControllerDocs {
     @GetMapping("/members/{memberId}/missions/running")
     public ResponseEntity<ApiResponse<PageResponseDTO<MemberMissionResDTO.goingResDTO>>> getRunningMissions(
             @PathVariable Long memberId,
-            @ModelAttribute @Valid MemberMissionReqDTO.FindMemberRunningMissionDTO dto
+            @RequestBody @Valid MemberMissionReqDTO.FindMemberRunningMissionDTO dto
     ) {
         Integer page = dto.page();
 

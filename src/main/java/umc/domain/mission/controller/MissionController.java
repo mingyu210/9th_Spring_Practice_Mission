@@ -57,7 +57,7 @@ public class MissionController implements MissionControllerDocs{
     @GetMapping("/stores/{storeId}/missions")
     public ResponseEntity<ApiResponse<PageResponseDTO<MissionResDTO.StoreMissionDTO>>> getStoreMissions(
             @PathVariable Long storeId,
-            @ModelAttribute @Valid MissionReqDTO.FindStoreMissionDTO dto
+            @RequestBody @Valid MissionReqDTO.FindStoreMissionDTO dto
     ) {
         Integer page = dto.page(); // 기본값 1 적용됨
 

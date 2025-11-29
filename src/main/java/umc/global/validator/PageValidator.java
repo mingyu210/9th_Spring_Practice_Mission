@@ -2,8 +2,12 @@ package umc.global.validator;
 
 import jakarta.validation.ConstraintValidator;
 import jakarta.validation.ConstraintValidatorContext;
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Component;
 import umc.global.annotation.ValidPage;
 
+@Component
+@RequiredArgsConstructor
 public class PageValidator implements ConstraintValidator<ValidPage, Integer> {
 
     @Override

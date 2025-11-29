@@ -56,6 +56,7 @@ public class MemberMissionCommandServiceImpl implements MemberMissionCommandServ
     }
 
     @Override
+    @Transactional
     public MemberMissionResDTO.completeResDTO completeMission(Long memberMissionId) {
 
         MemberMission mm = memberMissionRepository.findById(memberMissionId)

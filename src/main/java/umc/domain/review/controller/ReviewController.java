@@ -59,10 +59,9 @@ public class ReviewController implements ReviewControllerDocs{
     }
 
     @Override
-    @Validated
     @GetMapping("/review")
     public ResponseEntity<ApiResponse<PageResponseDTO<ReviewResDTO.ReviewPreViewDTO>>> getReviews(
-            @Valid ReviewReqDTO.FindReviewDTO dto
+            @RequestBody @Valid ReviewReqDTO.FindReviewDTO dto
     ){
         String storeName = dto.storeName();
         Integer page = dto.page();
@@ -75,11 +74,10 @@ public class ReviewController implements ReviewControllerDocs{
     }
 
     @Override
-    @Validated
     @GetMapping("/members/{memberId}/reviews")
     public ResponseEntity<ApiResponse<PageResponseDTO<ReviewResDTO.MemberReviewDTO>>> getMemberReviews(
             @PathVariable Long memberId,
-            @ModelAttribute @Valid ReviewReqDTO.FindMemberReviewDTO dto
+            @RequestBody @Valid ReviewReqDTO.FindMemberReviewDTO dto
     ){
         Integer page = dto.page();
 

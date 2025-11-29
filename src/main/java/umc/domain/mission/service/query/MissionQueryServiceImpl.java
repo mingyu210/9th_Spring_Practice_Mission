@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import umc.domain.mission.code.MissionErrorCode;
 import umc.domain.mission.converter.MissionConverter;
 import umc.domain.mission.dto.res.MissionResDTO;
@@ -21,6 +22,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MissionQueryServiceImpl implements MissionQueryService{
 
     private final MissionRepository missionRepository;

@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import umc.domain.member.code.MemberErrorCode;
 import umc.domain.member.converter.MemberMissionConverter;
 import umc.domain.member.dto.res.MemberMissionResDTO;
@@ -20,6 +21,7 @@ import java.util.List;
 
 @Service
 @RequiredArgsConstructor
+@Transactional(readOnly = true)
 public class MemberMissionQueryServiceImpl implements MemberMissionQueryService {
 
     private final MemberMissionRepository memberMissionRepository;
