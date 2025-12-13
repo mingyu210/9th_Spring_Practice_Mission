@@ -3,6 +3,7 @@ package umc.domain.member.converter;
 import umc.domain.member.dto.req.MemberReqDTO;
 import umc.domain.member.dto.res.MemberResponseDTO;
 import umc.domain.member.entity.Member;
+import umc.global.auth.enums.Role;
 
 public class MemberConverter {
 
@@ -23,11 +24,12 @@ public class MemberConverter {
                 .build();
     }
     // DTO -> Entity
-    public static Member toMember(MemberReqDTO.SignupRequestDTO dto) {
+    public static Member toMember(MemberReqDTO.SignupRequestDTO dto, String password,Role role) {
         return Member.builder()
                 .name(dto.name())
-                .password(dto.password())
+                .password(password)
                 .gender(dto.gender())
+                .role(role)
                 .birthday(dto.birthday())
                 .address(dto.address())
                 .email(dto.email())
