@@ -46,7 +46,6 @@ public class MemberController {
 
             @RequestBody @Valid MemberReqDTO.SignupRequestDTO dto
             ){
-        System.out.println("🔥🔥🔥 SIGN UP CONTROLLER HIT");
         return ResponseEntity.ok(
                 ApiResponse.onSuccess(MemberSuccessCode.MEMBER_SIGNUP_SUCCESS, memberCommandService.signup(dto))
         );
