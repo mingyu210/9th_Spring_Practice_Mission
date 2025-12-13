@@ -36,4 +36,15 @@ public class MemberConverter {
                 .phone(dto.phone())
                 .build();
     }
+
+    public static MemberResponseDTO.LoginDTO toLoginDTO(
+            Member member,
+            String accessToken
+    ) {
+        return MemberResponseDTO.LoginDTO.builder()
+                .memberId(member.getId())
+                .accessToken(accessToken)
+                .build();
+    }
+
 }
